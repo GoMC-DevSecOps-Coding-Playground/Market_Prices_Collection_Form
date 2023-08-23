@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Market Prices Form</title>
+  
+  <!-- Add the Bootstrap CSS file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <!-- Add jQuery and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  
+  <!-- Add the Bootstrap JS file -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <!-- Add your custom CSS file -->
+  <link rel="stylesheet" type="text/css" href="style2.css">
+  
+  <!-- Add Select2 CSS and JS files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  
+  <!-- Add custom JS code for Select2 -->
+  <script>
+    $(document).ready(function() {
+      $('.select2').select2({
+        theme: 'bootstrap4',
+        width: '100%'
+        allowClear: true,
+        placeholder: 'Choose...'
+
+      });kathon
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <h2 class="mb-4">Market Prices</h2>
+        
+        <h4 class="mb-3">Location Information</h4>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="subcounty">Subcounty</label>
+            <select class="form-control Select2 id="subcounty" required>
+              <option value="Makueni">Makueni</option>
+              <option value="Mbooni">mbooni</option>
+              <option value="Kilome">Kilome</option>
+              <option value="Kibwezi-West">Kibwezi-West</option>
+              <option value="Kibwezi-East">Kibwezi-East</option>
+              <option value="Kaiti">Kaiti</option>
+              
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="ward">Ward</label>
+            <select class="form-control select2" id="ward" required>
+              <option value="">Choose...</option>
+              <option value="Kathonzweni"data subcounty="Makueni">Kathonzweni</option>
+              <option value="Nzaui/kilili/kalamba"data subcounty="Makueni">Nzaui/kilili/kalamba</option>
+              <option value="Wote/Nziu"data subcounty="Makueni">Wote/Nziu</option>
+              <option value="Nguumo"data subcounty="Kibwezi-west">Nguumo</option>
+              <option value="Kitise/Kithuki"data subcounty="Makueni">Kitise/Kithuki</option>
+              <option value="Kisau/Kiteta"data subcounty="Mbooni">Kisau/Kiteta</option>
+              <option value="Kikumbulyu North"data subcounty="Kibwezi-west">Kikumbulyu North</option>
+              <option value="Kikumbulyu South"data subcounty="Kibwezi-west">Kikumbulyu South</option>
+              <option value="Kako/Waia"data subcounty="Mbooni">Kako/Waia</option>
+              <option value="Kilungu"data subcounty="Kaiti">Kilungu</option>
+              <option value="Makindu"data subcounty="Kibwezi-west">Makindu</option>
+              <option value="Nguu/Masumba"data subcounty="Kibwezi-west">Nguu/Masumba</option>
+              <option value="Mtito Andei"data subcounty="Kibwezi-east">Mtito Andei</option>
+              <option value="Kalawa"data subcounty="Mbooni">Kalawa</option>
+              <option value="Emali/Mulala"data subcounty="Kibwezi-west">Emali/Mulala</option>
+              <option value="Kasikeu"data subcounty="Kilome">Kasikeu</option>
+              <option value="Ukia"data subcounty="Kaiti">Ukia</option>
+              <option value="Ilima"data subcounty="Kaiti">Ilima</option>
+              <option value="Mukaa"data subcounty="Kilome">Mukaa</option>
+              <option value="Kee"data subcounty="Kaiti">Kee</option>
+              <option value="Masongaleni"data subcounty="Kibwezi-east">Masongaleni</option>
+              <option value="Thange"data subcounty="Kibwezi-east">Thange</option>
+              <option value="Mbooni"data subcounty="Mbooni">Mbooni</option>
+              <option value="Tulimani"data subcounty="Mbooni">Tulimani</option>
+              <option value="Ivingoni/Nzambani"data subcounty="Kibwezi-east">Ivingoni/Nzambani</option>
+              <option value="Kithungo/Kitundu"data subcounty="Mbooni">Kithungo/Kitundu</option>
+              <option value="Mavindini"data subcounty="Makueni">Mavindini</option>
+              <option value="KiimaKiu/Kalanzoni"data subcounty="Kilome">KiimaKiu/Kalanzoni</option>
+              <option value="Mbitini"data subcounty="Makueni">Mbitini</option>
+              <option value="Muvau/Kikuumini"data subcounty="Makueni">Muvau/Kikuumini</option> 
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="market">Market</label>
+            <select class="form-control select2" id="market" required>
+              <option value="">Choose...</option>
+              <option value="market1">Market 1</option>
+              <option value="market2">Market 2</option>
+              <option value="market3">Market 3</option>
+            </select>
+          </div>
+        </div>
+        
+        <h4 class="mb-3">Product Information</h4>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="product-name">Product Name</label>
+            <input type="text" class="form-control" id="product-name" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="highest-price">Highest Price</label>
+            <input type="number" class="form-control" id="highest-price" required>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="lowest-price">Lowest Price</label>
+            <input type="number" class="form-control" id="lowest-price" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date" required>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

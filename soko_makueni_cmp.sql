@@ -1,0 +1,211 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Aug 24, 2023 at 10:07 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `soko_makueni_cmp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `markets`
+--
+
+CREATE TABLE `markets` (
+  `market_id` int(200) NOT NULL,
+  `market_ward_id` int(200) NOT NULL,
+  `market_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `market_representatives`
+--
+
+CREATE TABLE `market_representatives` (
+  `rep_id` int(200) NOT NULL,
+  `rep_market_id` int(200) NOT NULL,
+  `rep_name` varchar(200) NOT NULL,
+  `rep_contact` varchar(200) NOT NULL,
+  `rep_email` varchar(200) NOT NULL,
+  `rep_password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(200) NOT NULL,
+  `product_market_id` int(200) NOT NULL,
+  `prodcut_name` varchar(200) NOT NULL,
+  `product_max_price` varchar(200) NOT NULL,
+  `product_low_price` varchar(200) NOT NULL,
+  `product_unit` varchar(200) NOT NULL,
+  `product_quantity` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcounties`
+--
+
+CREATE TABLE `subcounties` (
+  `subcounty_id` int(200) NOT NULL,
+  `subcounty_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(200) NOT NULL,
+  `user_name` varchar(200) NOT NULL,
+  `user_email` varchar(200) NOT NULL,
+  `user_password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wards`
+--
+
+CREATE TABLE `wards` (
+  `ward_id` int(200) NOT NULL,
+  `ward_subcounty_id` int(200) NOT NULL,
+  `ward_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `markets`
+--
+ALTER TABLE `markets`
+  ADD PRIMARY KEY (`market_id`);
+
+--
+-- Indexes for table `market_representatives`
+--
+ALTER TABLE `market_representatives`
+  ADD PRIMARY KEY (`rep_id`),
+  ADD KEY `MarketRepMarketId` (`rep_market_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `MarketProductMarketId` (`product_market_id`);
+
+--
+-- Indexes for table `subcounties`
+--
+ALTER TABLE `subcounties`
+  ADD PRIMARY KEY (`subcounty_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `wards`
+--
+ALTER TABLE `wards`
+  ADD PRIMARY KEY (`ward_id`),
+  ADD KEY `WardSubcountyId` (`ward_subcounty_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `markets`
+--
+ALTER TABLE `markets`
+  MODIFY `market_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `market_representatives`
+--
+ALTER TABLE `market_representatives`
+  MODIFY `rep_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subcounties`
+--
+ALTER TABLE `subcounties`
+  MODIFY `subcounty_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wards`
+--
+ALTER TABLE `wards`
+  MODIFY `ward_id` int(200) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `market_representatives`
+--
+ALTER TABLE `market_representatives`
+  ADD CONSTRAINT `MarketRepMarketId` FOREIGN KEY (`rep_market_id`) REFERENCES `markets` (`market_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `MarketProductMarketId` FOREIGN KEY (`product_market_id`) REFERENCES `markets` (`market_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `wards`
+--
+ALTER TABLE `wards`
+  ADD CONSTRAINT `WardSubcountyId` FOREIGN KEY (`ward_subcounty_id`) REFERENCES `subcounties` (`subcounty_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
